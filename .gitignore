@@ -7,6 +7,8 @@
 .env
 
 # User-specific files
+internal_logs
+logs
 .vscode
 *.rsuser
 *.suo
