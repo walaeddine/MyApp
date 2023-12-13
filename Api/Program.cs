@@ -1,4 +1,5 @@
 using Api.Extensions;
+using Contract;
 using Microsoft.AspNetCore.HttpOverrides;
 using NLog;
 
@@ -18,9 +19,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-if (app.Environment.IsDevelopment())
-    app.UseDeveloperExceptionPage();
-else
+
+var logger = app.Services.GetRequiredService<ILoggerManager>();
+app.ConfigureExceptionHandler(logger);
+
+if (app.Environment.IsProduction())
     app.UseHsts();
 
 app.UseHttpsRedirection();
