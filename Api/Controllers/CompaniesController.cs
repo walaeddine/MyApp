@@ -10,10 +10,7 @@ namespace Api.Controllers;
 public class CompaniesController : ControllerBase
 {
     private readonly IServiceManager _service;
-    public CompaniesController(IServiceManager service)
-    {
-        _service = service;
-    }
+    public CompaniesController(IServiceManager service) => _service = service;
 
     [HttpGet]
     public IActionResult GetCompanies()
@@ -34,6 +31,8 @@ public class CompaniesController : ControllerBase
     {
         if (company is null)
             return BadRequest("CompanyForCreationDto object is null");
+        if (!ModelState.IsValid)
+            return UnprocessableEntity(ModelState);
 
         var createdCompany = _service.CompanyService.CreateCompany(company);
 
@@ -68,7 +67,10 @@ public class CompaniesController : ControllerBase
     {
         if (company is null)
             return BadRequest("CompanyForUpdateDto object is null");
-            
+
+        if (!ModelState.IsValid)
+            return UnprocessableEntity(ModelState);
+
         _service.CompanyService.UpdateCompany(id, company, trackChanges: true);
         return NoContent();
     }
