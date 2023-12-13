@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Contracts", "Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{5E8610A9-C844-4A1F-BA2D-6E20018F7503}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{25D8FE2E-4563-4407-8C10-B9F661443BE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,5 +56,9 @@ Global
 		{5E8610A9-C844-4A1F-BA2D-6E20018F7503}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E8610A9-C844-4A1F-BA2D-6E20018F7503}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E8610A9-C844-4A1F-BA2D-6E20018F7503}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25D8FE2E-4563-4407-8C10-B9F661443BE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25D8FE2E-4563-4407-8C10-B9F661443BE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25D8FE2E-4563-4407-8C10-B9F661443BE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25D8FE2E-4563-4407-8C10-B9F661443BE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
