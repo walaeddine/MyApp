@@ -1,3 +1,4 @@
+using Api.ActionFilters;
 using Api.ModelBinders;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
@@ -17,7 +18,6 @@ public class CompaniesController : ControllerBase
     public async Task<IActionResult> GetCompanies()
     {
         var companies = await _service.CompanyService.GetAllCompaniesAsync(trackChanges: false);
-
         return Ok(companies);
     }
 
@@ -29,30 +29,18 @@ public class CompaniesController : ControllerBase
     }
 
     [HttpPost]
+    [ServiceFilter(typeof(ValidationFilterAttribute))]
     public async Task<IActionResult> CreateCompany([FromBody] CompanyForCreationDto company)
     {
-        if (company is null)
-            return BadRequest("CompanyForCreationDto object is null");
-
-        if (!ModelState.IsValid)
-            return UnprocessableEntity(ModelState);
-
         var createdCompany = await _service.CompanyService.CreateCompanyAsync(company);
-
         return CreatedAtRoute("CompanyById", new { id = createdCompany.Id }, createdCompany);
     }
 
     [HttpPut("{id:guid}")]
+    [ServiceFilter(typeof(ValidationFilterAttribute))]
     public async Task<IActionResult> UpdateCompany(Guid id, [FromBody] CompanyForUpdateDto company)
     {
-        if (company is null)
-            return BadRequest("CompanyForUpdateDto object is null");
-
-        if (!ModelState.IsValid)
-            return UnprocessableEntity(ModelState);
-
         await _service.CompanyService.UpdateCompanyAsync(id, company, trackChanges: true);
-
         return NoContent();
     }
 
@@ -60,7 +48,6 @@ public class CompaniesController : ControllerBase
     public async Task<IActionResult> DeleteCompany(Guid id)
     {
         await _service.CompanyService.DeleteCompanyAsync(id, trackChanges: false);
-
         return NoContent();
     }
 }

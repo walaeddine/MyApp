@@ -1,3 +1,4 @@
+using Api.ActionFilters;
 using Api.Extensions;
 using Contract;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -14,6 +15,7 @@ builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
 builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddScoped<ValidationFilterAttribute>();
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
